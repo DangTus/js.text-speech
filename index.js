@@ -8,7 +8,7 @@ if (synth.onvoiceschanged !== undefined) {
 }
 
 function loadVoices() {
-    bodyElement.innerHTML += `<h3>vao ham load voices</h3>`;
+    bodyElement.innerHTML = "";
 
     text = `Có ${synth.getVoices().length} ngôn ngữ`;
 
@@ -24,7 +24,6 @@ function loadVoices() {
 
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.voice = mVoice;
+    bodyElement.innerHTML += `<h3>ngôn ngữ hiện tại: ${utterance.voice.name}</h3>`;
     synth.speak(utterance);
-
-    bodyElement.innerHTML += `<h3>ket thuc ham load voices</h3>`;
 }
