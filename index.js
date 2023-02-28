@@ -23,7 +23,7 @@ function loadVoices() {
     utterance = new SpeechSynthesisUtterance();
     utterance.voice = mVoice;
 
-    text = `Ngôn ngữ hiện tại: ${utterance.voice.name}`;
+    text = `Ngôn ngữ hiện tại: ${utterance.voice.name} - ${utterance.voice.lang}`;
     utterance.text = text;
 
     synth.speak(utterance);
