@@ -1,7 +1,7 @@
-const utterance = new SpeechSynthesisUtterance();
 const bodyElement = document.querySelector(".chung-ta");
 
 const synth = window.speechSynthesis;
+let mVoice;
 
 if (synth.onvoiceschanged !== undefined) {
     synth.onvoiceschanged = loadVoices;
@@ -17,12 +17,13 @@ function loadVoices() {
     for (let voice of synth.getVoices()) {
         bodyElement.innerHTML += `<p>${voice.name} - ${voice.lang} - ${voice.voiceURI}</p>`;
         if (voice.lang == "en-GB" || voice.lang == "en_GB") {
-            utterance.voice = voice;
+            mVoice = voice;
             break;
         }
     }
 
-    utterance.text = text;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.voice = mVoice;
     synth.speak(utterance);
 
     bodyElement.innerHTML += `<h3>ket thuc ham load voices</h3>`;
