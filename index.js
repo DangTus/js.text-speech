@@ -6,10 +6,7 @@ window.onload = function () {
 };
 
 function loadVoices() {
-    if (speechSynthesis.getVoices().length == 0) {
-        bodyElement.innerHTML += `<p>không có cái nào</p>`;
-        return;
-    }
+    bodyElement.innerHTML += `<h2>Có ${speechSynthesis.getVoices().length} ngôn ngữ</h2>`;
 
     for (let voice of speechSynthesis.getVoices()) {
         bodyElement.innerHTML += `<p>${voice.name}</p>`;
