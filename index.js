@@ -5,7 +5,6 @@ const synth = window.speechSynthesis;
 
 if (synth.onvoiceschanged !== undefined) {
     synth.onvoiceschanged = loadVoices;
-
 }
 
 function loadVoices() {
@@ -16,8 +15,11 @@ function loadVoices() {
     bodyElement.innerHTML += `<h2>${text}</h2>`;
 
     for (let voice of synth.getVoices()) {
-        console.log(voice)
         bodyElement.innerHTML += `<p>${voice.name} - ${voice.lang} - ${voice.voiceURI}</p>`;
+        if (voice.lang == "en-GB" || voice.lang == "en_GB") {
+            utterance.voice = voice;
+            break;
+        }
     }
 
     utterance.text = text;
