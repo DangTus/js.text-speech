@@ -5,6 +5,7 @@ const synth = window.speechSynthesis;
 
 if (synth.onvoiceschanged !== undefined) {
     synth.onvoiceschanged = loadVoices;
+
 }
 
 function loadVoices() {
@@ -15,7 +16,8 @@ function loadVoices() {
     bodyElement.innerHTML += `<h2>${text}</h2>`;
 
     for (let voice of synth.getVoices()) {
-        bodyElement.innerHTML += `<p>${voice.name}</p>`;
+        console.log(voice)
+        bodyElement.innerHTML += `<p>${voice.name} - ${voice.lang} - ${voice.voiceURI}</p>`;
     }
 
     utterance.text = text;
