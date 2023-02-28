@@ -10,9 +10,7 @@ if (synth.onvoiceschanged !== undefined) {
 function loadVoices() {
     bodyElement.innerHTML = "";
 
-    text = `Có ${synth.getVoices().length} ngôn ngữ`;
-
-    bodyElement.innerHTML += `<h2>${text}</h2>`;
+    bodyElement.innerHTML += `<h2>Có ${synth.getVoices().length} ngôn ngữ</h2>`;
 
     for (let voice of synth.getVoices()) {
         bodyElement.innerHTML += `<p>${voice.name} - ${voice.lang} - ${voice.voiceURI}</p>`;
@@ -22,8 +20,13 @@ function loadVoices() {
         }
     }
 
-    const utterance = new SpeechSynthesisUtterance(text);
+    utterance = new SpeechSynthesisUtterance();
     utterance.voice = mVoice;
-    bodyElement.innerHTML += `<h3>ngôn ngữ hiện tại: ${utterance.voice.name}</h3>`;
+
+    text = `Ngôn ngữ hiện tại: ${utterance.voice.name}`;
+    utterance.text = text;
+
     synth.speak(utterance);
+
+    bodyElement.innerHTML += `<h3>${text}</h3>`;
 }
