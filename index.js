@@ -14,6 +14,9 @@ function loadVoices() {
 
     for (let voice of synth.getVoices()) {
         bodyElement.innerHTML += `<p>${voice.name} - ${voice.lang} - ${voice.voiceURI}</p>`;
+    }
+
+    for (let voice of synth.getVoices()) {
         if (voice.lang == "en-GB" || voice.lang == "en_GB") {
             mVoice = voice;
             break;
